@@ -5,10 +5,7 @@ contract Inbox {
     constructor (string memory initialMsg) public {
         message = initialMsg;
     }    
-    function setMsg(string memory newMsg) public {
+    function setMessage(string memory newMsg) public {
         message = newMsg;
-    }
-    function getMsg() public view returns (string memory) {
-        return message;
     }
 }
