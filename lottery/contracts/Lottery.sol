@@ -2,7 +2,7 @@ pragma solidity >=0.4.22 <0.6.0;
 
 contract Lottery {
     address public manager;
-    address payable[] public players;
+    address [] public players;
 
     constructor () public payable {
         // the global msg object has the following properties
@@ -28,7 +28,7 @@ contract Lottery {
     }
     
     function resetLottery() private {
-        players = new address payable[](0);
+        players = new address[](0);
     }
     
     modifier restricted() {
@@ -43,7 +43,7 @@ contract Lottery {
         return uint(keccak256(abi.encodePacked(block.difficulty, now, players)));
     }
     
-    function getPlayers() public view returns (address payable[] memory) {
+    function getPlayers() public view returns (address[] memory) {
         return players;
     }
     
