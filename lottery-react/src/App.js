@@ -53,7 +53,7 @@ class App extends Component {
     });
     this.setState({
       message: 'A winner has been picked'
-    })
+    });
   };
 
   render() {
