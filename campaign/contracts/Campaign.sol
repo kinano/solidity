@@ -5,7 +5,7 @@ contract Campaign {
     struct Request {
         string description;
         uint value;
-        address recipient;
+        address payable recipient;
         bool complete;
         uint approvalCount;
         mapping(address => bool) approvals;
@@ -15,6 +15,7 @@ contract Campaign {
     address public manager;
     uint public minimumContribution;
     mapping(address => bool) public approvers;
+    uint approversCount = 0;
 
     constructor (uint minimumContr) public payable {
         // the global msg object has the following properties
@@ -28,6 +29,7 @@ contract Campaign {
     
     function contribute() public payable meetsMinContribution {
         approvers[msg.sender] = true;
+        approversCount++;
     }
     
     modifier meetsMinContribution() {
@@ -42,7 +44,7 @@ contract Campaign {
     
     // The request r cannot be stored in storage because there is no contract level property that refers to it directly
     // For some reason, the solidity compiler makes a big deal of explicitly specifying memory as the holder for the request instance
-    function createRequest(string memory description, uint value, address recipient) public restricted {
+    function createRequest(string memory description, uint value, address payable recipient) public restricted {
         Request memory r = Request({
             description: description,
             value: value,
@@ -64,6 +66,16 @@ contract Campaign {
         require(!r.approvals[msg.sender]);
         r.approvals[msg.sender] = true;
         r.approvalCount++;
+    }
+    
+    function finalizeRequest(uint index) public restricted {
+        Request storage r = requests[index];
+        // Make sure the request has not been completed
+        require(!r.complete);
+        // Make sure the request has enough approvers
+        require(r.approvalCount >= (approversCount / 2) );
+        r.complete = true;
+        r.recipient.transfer(r.value);
     }
     
 }
