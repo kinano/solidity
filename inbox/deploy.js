@@ -1,8 +1,11 @@
+// Pass the eth secret as an arg
+// example: node deploy.js "boo ha ha ha ha ha ho"
+const ethSecret = process.argv[2];
 const HDWalletProvider = require('truffle-hdwallet-provider');
 const Web3 = require('web3');
 const { interface, bytecode } = require('./compile');
 const provider = new HDWalletProvider(
-    'glue vendor noble zone thought hundred economy oil extend famous fancy artist',
+    ethSecret,
     'https://rinkeby.infura.io/v3/3857f9f33a75447490c80c05e7976d27'
 );
 
