@@ -19,7 +19,7 @@ contract Campaign {
     struct Request {
         string description;
         uint value;
-        address payable recipient;
+        address recipient;
         bool complete;
         uint approvalCount;
         mapping(address => bool) approvals;
@@ -58,7 +58,7 @@ contract Campaign {
     
     // The request r cannot be stored in storage because there is no contract level property that refers to it directly
     // For some reason, the solidity compiler makes a big deal of explicitly specifying memory as the holder for the request instance
-    function createRequest(string memory description, uint value, address payable recipient) public restricted {
+    function createRequest(string memory description, uint value, address recipient) public restricted {
         Request memory r = Request({
             description: description,
             value: value,
