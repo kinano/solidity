@@ -6,6 +6,6 @@
 
 * The lottery-react folder adds a simple react application that interacts with the Solidity contract.
 
-* The kickstart folder has two contracts: Campaign and CampaignFactory. The Factory contract is used to create new instances of the Campaign contract.
+* The kickstart folder has two contracts: Campaign and CampaignFactory. The Factory contract is used to create new instances of the Campaign contract. We use Next.js for server side rendering and Semantic UI React for styling.
 
 https://www.udemy.com/ethereum-and-solidity-the-complete-developers-guide/

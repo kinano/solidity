@@ -7,6 +7,7 @@ const compiledFactory = require("./build/CampaignFactory.json");
 
 const provider = new HDWalletProvider(
     ethSecret,
+    // @todo @kinano Move to config
     'https://rinkeby.infura.io/v3/3857f9f33a75447490c80c05e7976d27'
 );
 
