@@ -29,7 +29,7 @@ contract Campaign {
     address public manager;
     uint public minimumContribution;
     mapping(address => bool) public approvers;
-    uint approversCount = 0;
+    uint public approversCount = 0;
 
     constructor (uint minimumContr, address creator) public payable {
         // the global msg object has the following properties
