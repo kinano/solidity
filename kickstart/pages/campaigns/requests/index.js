@@ -11,12 +11,13 @@ class RequestsIndex extends Component {
         const campaign = Campaign(address);
         const requestCount = await campaign.methods.getRequestsCount().call();
         const approversCount = await campaign.methods.approversCount().call();
+        const manager = await campaign.methods.manager().call();
         const requests = await Promise.all(
             Array(parseInt(requestCount)).fill().map((element, index) => {
                 return campaign.methods.requests(index).call()
             })
         )
-        return { address, requests, requestCount, approversCount };
+        return { address, requests, requestCount, approversCount, manager };
     }
 
     getRows = () => {
@@ -28,6 +29,7 @@ class RequestsIndex extends Component {
                     address={this.props.address}
                     id={index}
                     approversCount={this.props.approversCount}
+                    manager={this.props.manager}
                 />
             );
         });
@@ -65,6 +67,9 @@ class RequestsIndex extends Component {
                             </HeaderCell>
                             <HeaderCell>
                                 Finalize
+                            </HeaderCell>
+                            <HeaderCell>
+                                Message
                             </HeaderCell>
                         </Row>
                     </Header>
