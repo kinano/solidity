@@ -33,7 +33,7 @@ class CampaignShow extends Component {
             {
                 header: manager,
                 meta: 'Address of Manager',
-                description: 'Manager blah blah',
+                description: 'This is the hex address of this campaign\s Manager',
                 style: { overflowWrap: 'break-word' },
                 key: 'manager'
             },
