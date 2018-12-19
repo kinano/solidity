@@ -8,7 +8,7 @@ class RequestRow extends Component {
 
     onApprove = async (e) => {
         e.preventDefault();
-        campaign = Campaign(this.props.address);
+        const campaign = Campaign(this.props.address);
         const accounts = await web3.eth.getAccounts();
         await campaign.methods.approveRequest(this.props.id).send({
             from: accounts[0]
